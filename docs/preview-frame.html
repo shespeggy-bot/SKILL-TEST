@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Wanderlust — 手机框预览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* 内屏精确 750×1624；外框含 14px 边距 */
+      .phone-device {
+        --bezel: 14px;
+        --screen-w: 750px;
+        --screen-h: 1624px;
+        width: calc(var(--screen-w) + 2 * var(--bezel));
+        height: calc(var(--screen-h) + 2 * var(--bezel));
+        transform-origin: top center;
+        flex-shrink: 0;
+      }
+      .phone-screen {
+        width: var(--screen-w);
+        height: var(--screen-h);
+      }
+      @media (max-width: 1024px) {
+        .phone-device {
+          transform: scale(min((100vw - 32px) / 778, (100vh - 280px) / 1652, 1));
+          margin-bottom: calc((1652 * min((100vw - 32px) / 778, (100vh - 280px) / 1652, 1)) - 1652px);
+        }
+      }
+      @media (min-width: 1025px) {
+        .phone-device {
+          transform: scale(min(1, (100vh - 140px) / 1652, (100vw - 420px) / 778));
+          margin-bottom: calc(1652 * (1 - min(1, (100vh - 140px) / 1652, (100vw - 420px) / 778)) * -0.5);
+        }
+      }
+      .iframe-view {
+        width: 750px;
+        height: 1624px;
+        border: 0;
+        display: block;
+        background: #3c3c3e;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-[#1c1c1f] text-white antialiased">
+    <div
+      class="mx-auto flex max-w-[1440px] flex-col items-center gap-10 px-4 py-8 lg:flex-row lg:items-start lg:justify-center lg:gap-20 lg:py-10"
+    >
+      <!-- 手机框：内屏 750×1624，iframe 内页面独立滚动 -->
+      <div class="flex flex-col items-center">
+        <p class="mb-4 text-center text-xs uppercase tracking-[0.2em] text-white/40">
+          可视区域 750 × 1624 px · 框内可上下滑动
+        </p>
+        <div
+          class="phone-device rounded-[3.25rem] bg-[#0a0a0b] p-[14px] shadow-[0_40px_120px_-20px_rgba(0,0,0,0.75),inset_0_1px_0_rgba(255,255,255,0.06)] ring-1 ring-white/[0.08]"
+        >
+          <div
+            class="phone-screen relative overflow-hidden rounded-[2.55rem] bg-black ring-1 ring-white/[0.06]"
+          >
+            <div
+              class="pointer-events-none absolute left-1/2 top-3 z-10 h-7 w-[118px] -translate-x-1/2 rounded-full bg-black/85 ring-1 ring-white/[0.05]"
+              aria-hidden="true"
+            ></div>
+            <iframe
+              id="demoFrame"
+              class="iframe-view"
+              title="Wanderlust 旅游页"
+              src="index.html"
+              loading="lazy"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+
+      <aside class="flex w-full max-w-[280px] flex-col items-center gap-6 lg:sticky lg:top-10 lg:items-start">
+        <div>
+          <h1 class="font-semibold text-xl text-white">扫码手机浏览</h1>
+          <p class="mt-2 text-sm leading-relaxed text-white/55">
+            对准二维码即可用手机打开与框内相同的页面（需使用 http/https 访问本页，扫描目标为同目录下的
+            <span class="text-white/80">index.html</span>）。
+          </p>
+        </div>
+
+        <div class="rounded-2xl bg-white p-4 shadow-xl ring-1 ring-black/5">
+          <img
+            id="qrImg"
+            alt="页面链接二维码"
+            width="220"
+            height="220"
+            class="block h-[220px] w-[220px]"
+            decoding="async"
+          />
+        </div>
+
+        <div id="httpHint" class="hidden w-full rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-200/90">
+          当前为 file:// 协议，二维码无法在手机上打开。请先运行本地服务器后再打开本预览页。
+        </div>
+
+        <div class="w-full rounded-xl border border-white/10 bg-white/[0.04] p-4">
+          <p class="text-[10px] font-medium uppercase tracking-wider text-white/35">打开地址</p>
+          <a
+            id="targetLink"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-2 block break-all text-sm text-emerald-400/90 underline decoration-emerald-400/30 underline-offset-2 transition-colors hover:text-emerald-300"
+          ></a>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      (function () {
+        var target = new URL('index.html', window.location.href).href;
+        var link = document.getElementById('targetLink');
+        link.href = target;
+        link.textContent = target;
+
+        if (target.indexOf('file:') === 0) {
+          document.getElementById('httpHint').classList.remove('hidden');
+        }
+
+        document.getElementById('qrImg').src =
+          'https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=8&data=' + encodeURIComponent(target);
+      })();
+    </script>
+  </body>
+</html>
