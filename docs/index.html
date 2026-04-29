@@ -38,7 +38,7 @@
       }
       html {
         min-height: 100%;
-        background-color: #3c3c3e;
+        background-color: #fdfbf7;
       }
       .grain {
         position: absolute;
@@ -131,17 +131,17 @@
       }
     </style>
   </head>
-  <body class="min-h-[100dvh] bg-canvas antialiased">
+  <body class="min-h-[100dvh] bg-cream antialiased">
     <div
       id="page"
-      class="relative mx-3 mt-3 mb-3 min-h-[calc(100dvh-1.5rem)] w-auto max-w-md overflow-x-clip rounded-[1.75rem] bg-cream text-espresso shadow-[0_28px_90px_-28px_rgba(0,0,0,0.55)] selection:bg-sage/30 sm:mx-auto"
+      class="relative min-h-[100dvh] w-full max-w-none overflow-x-clip bg-cream text-espresso selection:bg-sage/30"
     >
     <div class="grain" aria-hidden="true"></div>
 
     <!-- Floating island nav -->
-    <header class="fixed left-3 right-3 top-0 z-40 flex justify-center px-4 pt-6 sm:left-1/2 sm:right-auto sm:w-full sm:max-w-md sm:-translate-x-1/2">
+    <header class="fixed left-0 right-0 top-0 z-40 flex justify-center px-4 pt-6">
       <div
-        class="flex w-full max-w-md items-center justify-between gap-4 rounded-full border border-espresso/[0.06] bg-cream/75 px-4 py-2.5 shadow-[0_8px_40px_-12px_rgba(44,36,32,0.18)] backdrop-blur-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
+        class="flex w-full max-w-none items-center justify-between gap-4 rounded-full border border-espresso/[0.06] bg-cream/75 px-4 py-2.5 shadow-[0_8px_40px_-12px_rgba(44,36,32,0.18)] backdrop-blur-xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]"
       >
         <span class="font-display text-lg font-semibold tracking-tight text-espresso">Wanderlust</span>
         <button
@@ -186,7 +186,7 @@
     <main>
       <!-- Hero -->
       <section class="relative min-h-[100dvh] px-4 pb-8 pt-28 md:px-8 md:pt-32">
-        <div class="mx-auto flex max-w-md flex-col gap-8">
+        <div class="flex w-full flex-col gap-8">
           <div class="reveal">
             <p
               class="mb-4 inline-flex rounded-full border border-espresso/[0.08] bg-parchment/60 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-espresso/70"
@@ -197,7 +197,7 @@
               把地平线<br />
               <span class="italic text-sage">折进</span> 口袋里
             </h1>
-            <p class="mt-6 max-w-[34ch] text-[15px] leading-relaxed text-espresso/65">
+            <p class="mt-6 max-w-none text-[15px] leading-relaxed text-espresso/65">
               为小屏幕而写的旅程编辑：少即是多，留白是奢侈。每一次滑动，都是一封未寄出的明信片。
             </p>
           </div>
@@ -250,7 +250,7 @@
 
       <!-- Bento destinations -->
       <section id="journeys" class="px-4 py-12 md:px-8">
-        <div class="mx-auto max-w-md">
+        <div class="w-full">
           <div class="reveal mb-12">
             <p
               class="mb-3 inline-flex rounded-full border border-espresso/[0.08] bg-parchment/50 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-espresso/65"
@@ -389,7 +389,7 @@
 
       <!-- Stays teaser -->
       <section id="stays" class="px-4 py-12 md:px-8">
-        <div class="mx-auto max-w-md">
+        <div class="w-full">
           <div class="reveal">
             <p
               class="mb-3 inline-flex rounded-full border border-espresso/[0.08] bg-parchment/50 px-3 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-espresso/65"
@@ -458,7 +458,7 @@
 
       <!-- Stories strip -->
       <section id="stories" class="px-4 py-12 md:px-8">
-        <div class="mx-auto max-w-md">
+        <div class="w-full">
           <div class="reveal mb-8">
             <h2 class="font-display text-3xl font-semibold text-espresso">旅途故事</h2>
             <p class="mt-2 text-sm text-espresso/55">横向滑动，像在火车站台读小说。</p>
@@ -521,7 +521,7 @@
 
       <!-- Contact -->
       <section id="contact" class="px-4 pt-12 pb-32 md:px-8">
-        <div class="mx-auto max-w-md">
+        <div class="w-full">
           <div class="reveal">
             <div class="p-2 rounded-[2rem] bg-parchment/70 ring-1 ring-espresso/[0.06]">
               <div
